@@ -4,234 +4,705 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>obfuscatex - Android Developer</title>
+    <title>ObfuscateX | Android Developer</title>
+    <meta name="description"
+        content="ObfuscateX is an independent application development Studio focused on performance, clean UI, and meaningful apps like Bible – Chapter by Chapter and FloatPrompt.">
+    <meta name="theme-color" content="#050505">
+
+    <!-- Favicon Placeholder -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
+        /* CSS Reset & Custom Properties */
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --primary-color: #3b82f6;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-color: #050505;
+            --surface-color: #121212;
+            --surface-color-hover: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #d946ef);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+            --card-shadow-hover: 0 20px 40px -10px rgba(139, 92, 246, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        .brand-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Reusable Classes */
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            text-align: center;
-            padding: 4rem 0;
-            border-bottom: 1px solid var(--surface-color);
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            font-weight: 300;
+            padding: 0 2rem;
         }
 
         .section {
-            padding: 4rem 0;
+            padding: 8rem 0;
+            position: relative;
         }
 
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--text-main);
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 0;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive Nav */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 60px;
+            /* Offset for fixed header */
+            overflow: hidden;
+        }
+
+        /* Subtle Background Gradients */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-inline: auto;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            opacity: 0.7;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid var(--text-secondary);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .mouse::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 6px;
+            background-color: var(--text-secondary);
+            border-radius: 2px;
+            animation: scrollWheel 2s infinite;
+        }
+
+        /* Apps Section */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         .app-card {
-            background-color: var(--surface-color);
-            border-radius: 12px;
-            padding: 2rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
-            gap: 2rem;
-            align-items: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            flex-direction: column;
+            height: 100%;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            background: var(--surface-color-hover);
+            box-shadow: var(--card-shadow-hover);
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #1e293b, #334155);
-            border-radius: 24px;
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-icon-placeholder {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
-        }
-
-        .app-info h3 {
-            font-size: 1.5rem;
-            margin: 0 0 0.5rem 0;
-        }
-
-        .app-info p {
-            color: var(--text-muted);
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .app-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .app-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #2563eb;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-
-        .contact-info {
-            background-color: var(--surface-color);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.25rem;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: var(--text-muted);
-            border-top: 1px solid var(--surface-color);
-            margin-top: 2rem;
-        }
-
-        .links {
-            margin-top: 1rem;
-            display: flex;
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            gap: 2rem;
+            padding: 0.9rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            width: 100%;
         }
 
-        .links a {
-            color: var(--text-muted);
-            text-decoration: none;
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border: none;
         }
 
-        .links a:hover {
-            color: var(--primary-color);
+        .btn-primary:hover {
+            transform: scale(1.02);
+            background: #e4e4e7;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
         }
 
-        @media (max-width: 768px) {
-            .app-card {
-                flex-direction: column;
-                text-align: center;
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(to bottom, var(--bg-color), #09090b);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, rgba(0, 0, 0, 0) 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .about p strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding-bottom: 6rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .contact-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .email-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            background: #000;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
 
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 1rem;
-                display: block;
+            to {
+                opacity: 1;
             }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollWheel {
+            0% {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, 15px);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll Reveal Utility Classes (Used by JS) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <header>
-            <h1>obfuscatex</h1>
-            <p class="subtitle">Independent Android Developer creating mindful, high-quality applications.</p>
-        </header>
+    <!-- Header / Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo text-gradient">ObfuscateX</a>
+            <nav class="nav-links">
+                <a href="#apps">Apps</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-        <section class="section">
-            <h2>Our Apps</h2>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-tag">Independent Application Development Studio</div>
+            <h1 class="text-gradient">ObfuscateX</h1>
+            <p>Building high-performance, beautifully designed Android applications with a focus on clean UI and
+                meaningful user interactions.</p>
+            <a href="#apps" class="btn btn-primary"
+                style="display: inline-flex; width: auto; padding: 1rem 2.5rem; font-size: 1.05rem; border-radius: 100px; margin-top: 0.5rem;">Explore
+                Apps</a>
+        </div>
 
-            <div class="app-card">
-                <div class="app-icon">📖</div>
-                <div class="app-info">
-                    <h3>Bible - Chapter By Chapter</h3>
-                    <p>A digital sanctuary for daily Bible reading. Designed to help you read through the entire
-                        Scripture chapter by chapter, with progress tracking and a distraction-free, beautiful
-                        interface.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.bible.chapterbychapter" class="btn"
-                        target="_blank">Get it on Google Play</a>
-                    <a href="Bible-Chapter-By-Chapter/privacy_policy.html" class="btn btn-outline">Privacy Policy</a>
+        <!-- Smooth Scroll Indicator -->
+        <a href="#apps" class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll</span>
+        </a>
+    </section>
+
+    <!-- Apps Section -->
+    <section class="section" id="apps">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Featured Apps</h2>
+                <p>Designed with purpose. Built for performance.</p>
+            </div>
+
+            <div class="apps-grid">
+                <!-- App Card 1: Bible -->
+                <div class="app-card reveal">
+                    <div class="app-icon-placeholder">📖</div>
+                    <h3>Bible – Chapter by Chapter</h3>
+                    <p>A minimal, distraction-free reading experience for the Holy Bible. Read, reflect, and grow
+                        chapter by chapter with this elegantly designed Android application tailored for focus.</p>
+                    <div class="app-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.bible.chapterbychapter"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <svg style="width: 20px; height: 20px; margin-right: 8px;" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
+                            Get it on Google Play
+                        </a>
+                        <a href="privacy/biblechapterbychapter_privacy_policy.html" class="btn btn-secondary">Privacy
+                            Policy</a>
+                    </div>
+                </div>
+
+                <!-- App Card 2: FloatPrompt -->
+                <div class="app-card reveal" style="transition-delay: 0.15s;">
+                    <div class="app-icon-placeholder">🎥</div>
+                    <h3>FloatPrompt – Teleprompter</h3>
+                    <p>Professional teleprompter app for creators, presenters, and video recording. Deliver your lines
+                        flawlessly with floating widgets, customizable scrolling, and an intuitive interface.</p>
+                    <div class="app-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.floatprompt" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-primary">
+                            <svg style="width: 20px; height: 20px; margin-right: 8px;" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
+                            Get it on Google Play
+                        </a>
+                        <a href="privacy/floatprompt_teleprompter_privacy_policy.html" class="btn btn-secondary">Privacy
+                            Policy</a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section">
-            <h2>Contact Support</h2>
-            <div class="contact-info">
-                <p>Have questions, feedback, or need support with our applications?</p>
-                <a href="mailto:obfuscatexapps@gmail.com">obfuscatexapps@gmail.com</a>
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>About the Developer</h2>
             </div>
-        </section>
-
-        <footer>
-            <p>&copy; <span id="year"></span> obfuscatex. All rights reserved.</p>
-            <div class="links">
-                <!-- Using absolute paths since this is at the root -->
-                <a href="https://obfuscatex.github.io/Bible-Chapter-By-Chapter/privacy_policy.html">Privacy Policy</a>
-                <a href="https://obfuscatex.github.io/app-ads.txt">app-ads.txt</a>
+            <div class="about-content reveal">
+                <p>
+                    I am an <strong>independent application development Studio</strong> dedicated to crafting mobile
+                    applications
+                    that blend powerful functionality with elegant, modern aesthetics.
+                    I focus intently on <strong>native performance</strong>, <strong>clean typography</strong>, and
+                    <strong>meaningful user experiences</strong> to build tools that users love to open every single
+                    day.
+                </p>
             </div>
-        </footer>
-    </div>
+        </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-card reveal">
+                <h2>Let's Connect</h2>
+                <p>Have a question about my apps, need support, or just want to say hello? Drop an email and I'll get
+                    back to you.</p>
+                <a href="mailto:obfuscatexapps@gmail.com" class="email-link">
+                    <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    obfuscatexapps@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ObfuscateX. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts for Interactions -->
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Header background opacity on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(5, 5, 5, 0.9)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+            } else {
+                header.style.background = 'rgba(5, 5, 5, 0.7)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Scroll Reveal Animation using Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15, // Trigger when 15% visible
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     </script>
+
 </body>
 
 </html>
