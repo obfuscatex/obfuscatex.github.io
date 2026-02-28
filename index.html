@@ -448,15 +448,18 @@
         .email-link {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
             font-weight: 500;
             color: var(--text-primary);
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
             border-radius: 100px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 100%;
+            word-break: break-all;
         }
 
         .email-link:hover {
@@ -633,10 +636,10 @@
             </div>
             <div class="about-content reveal">
                 <p>
-                    I am an <strong>independent application development Studio</strong> dedicated to crafting mobile
+                    We are an <strong>independent application development Studio</strong> dedicated to crafting mobile
                     applications
                     that blend powerful functionality with elegant, modern aesthetics.
-                    I focus intently on <strong>native performance</strong>, <strong>clean typography</strong>, and
+                    We focus intently on <strong>native performance</strong>, <strong>clean typography</strong>, and
                     <strong>meaningful user experiences</strong> to build tools that users love to open every single
                     day.
                 </p>
