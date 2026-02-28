@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FloatPrompt Privacy Policy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(135deg, #0a0e27 0%, #1a0a3e 50%, #2d0a4e 100%);
+      color: #e0e6ff;
+      line-height: 1.8;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Animated background elements */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 136, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      animation: drift 15s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 10px;
+      background: linear-gradient(120deg, #ff00ff, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+      letter-spacing: 2px;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5)); }
+      50% { filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8)); }
+    }
+
+    .last-modified {
+      color: #00ffff;
+      font-size: 0.9em;
+      font-style: italic;
+      margin-top: 15px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    .divider {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
+      margin: 30px auto;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 50px;
+      margin-bottom: 25px;
+      color: #00ffff;
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+      border-left: 4px solid #ff00ff;
+      padding-left: 20px;
+      letter-spacing: 1px;
+    }
+
+    h3 {
+      font-size: 1.2em;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #ff88ff;
+      text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+      letter-spacing: 0.5px;
+    }
+
+    section {
+      margin-bottom: 40px;
+      padding: 25px;
+      background: rgba(20, 10, 50, 0.4);
+      border: 1px solid rgba(255, 0, 255, 0.2);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.1), 0 0 20px rgba(255, 0, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      border-color: rgba(255, 0, 255, 0.4);
+      box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.15), 0 0 30px rgba(255, 0, 255, 0.2);
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 1.05em;
+      letter-spacing: 0.5px;
+    }
+
+    ul {
+      list-style: none;
+      margin-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      font-size: 1.05em;
+    }
+
+    ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #ff00ff;
+      font-size: 1.5em;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+    }
+
+    .contact-section {
+      background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+      border: 2px solid #ff00ff;
+    }
+
+    .contact-link {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      border-bottom: 2px solid rgba(0, 255, 255, 0.5);
+    }
+
+    .contact-link:hover {
+      color: #ff00ff;
+      text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+      border-bottom-color: #ff00ff;
+    }
+
+    /* Scanlines effect */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 255, 0.03),
+        rgba(255, 0, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 0, 255, 0.2);
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h2 {
+        font-size: 1.4em;
+      }
+
+      .container {
+        padding: 30px 20px;
+      }
+
+      section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>FloatPrompt</h1>
+      <div class="divider"></div>
+      <p class="last-modified">Privacy Policy | Last Modified: February 24, 2026</p>
+    </header>
+
+    <section>
+      <h2>1. Introduction</h2>
+      <p>FloatPrompt ("we", "our", or "us") respects your privacy. This policy explains how we handle your data when you use the FloatPrompt mobile application ("the App").</p>
+    </section>
+
+    <section>
+      <h2>2. Data Collection</h2>
+      <ul>
+        <li>We do not collect personal data on our servers.</li>
+        <li>Scripts you create are stored locally on your device only.</li>
+        <li>Video recordings are saved locally to your device's Gallery.</li>
+        <li>We do not transmit any of your scripts, recordings, or personal files to external servers.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Permissions</h2>
+      <ul>
+        <li><strong>Display Over Other Apps (Overlay):</strong> Used to display the teleprompter script over other applications.</li>
+        <li><strong>Camera/Microphone:</strong> Used only when you actively choose to record a video within the App.</li>
+        <li>These permissions are only activated with your explicit action and are not used in the background.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Advertising &amp; Third-Party Services</h2>
+      <p>We use the following third-party services that may collect data:</p>
+
+      <h3>a) Google AdMob (Advertising)</h3>
+      <ul>
+        <li>AdMob displays ads in this App and may use technologies such as cookies, device identifiers (including Advertising ID), IP addresses, and other identifiers to serve ads and measure their performance.</li>
+        <li>Data that may be collected includes: Advertising ID, device information (model, OS version, screen size), IP address, approximate location (IP-based), app usage data, and interaction with ads.</li>
+        <li>AdMob's data practices are governed by Google's Privacy Policy: <a href="https://policies.google.com/privacy" class="contact-link" target="_blank">https://policies.google.com/privacy</a></li>
+      </ul>
+
+      <h3>b) Google Firebase Analytics</h3>
+      <ul>
+        <li>Firebase Analytics collects app usage data including device identifiers, session data, and in-app events to help us understand usage patterns.</li>
+        <li>Firebase's privacy practices: <a href="https://firebase.google.com/support/privacy" class="contact-link" target="_blank">https://firebase.google.com/support/privacy</a></li>
+      </ul>
+
+      <p>For more information about how Google uses data from apps that use their services, please visit: <a href="https://policies.google.com/technologies/partner-sites" class="contact-link" target="_blank">https://policies.google.com/technologies/partner-sites</a></p>
+    </section>
+
+    <section>
+      <h2>5. User Consent &amp; Ad Personalization</h2>
+      <ul>
+        <li>Before serving personalized ads, we request your consent using Google's User Messaging Platform (UMP), in compliance with GDPR and other applicable regulations.</li>
+        <li>You may change your ad personalization preferences at any time through the App's Settings screen under "Manage Ad Preferences."</li>
+        <li>If you do not consent to personalized ads, you may still see non-personalized (contextual) ads.</li>
+        <li>Google will not personalize ads if a user's Google Account ad personalization setting is turned off, regardless of any choice made in this App.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Data Sharing</h2>
+      <ul>
+        <li>We do not sell, trade, or rent your personal information.</li>
+        <li>We do not pass any personally identifiable information (PII) to Google or any third party through our ad integrations.</li>
+        <li>Data collected by third-party ad and analytics services (AdMob, Firebase) is processed by those services according to their own privacy policies linked above.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Children's Privacy</h2>
+      <ul>
+        <li>This App is not directed at children under the age of 13.</li>
+        <li>We do not knowingly collect personal information from children under 13.</li>
+        <li>We have tagged our ad requests to indicate this App is NOT directed at children (setTagForUnderAgeOfConsent = false).</li>
+        <li>If we become aware that a child under 13 has provided personal information, we will take steps to remove it.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Data Retention</h2>
+      <ul>
+        <li>All user-generated content (scripts, recordings) is stored locally on your device.</li>
+        <li>We do not retain any user data on our servers.</li>
+        <li>Uninstalling the App will remove all locally stored data.</li>
+        <li>Third-party services (AdMob, Firebase) may retain data according to their own policies.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Your Rights (GDPR / CCPA)</h2>
+      <p>If you are in the European Economic Area (EEA), you have the right to:</p>
+      <ul>
+        <li>Access, correct, or delete your data</li>
+        <li>Withdraw consent for personalized advertising at any time via Settings &gt; Manage Ad Preferences</li>
+        <li>Object to data processing</li>
+        <li>Lodge a complaint with a data protection authority</li>
+      </ul>
+      <p>If you are a California resident, you have the right to:</p>
+      <ul>
+        <li>Know what personal data is collected</li>
+        <li>Request deletion of your data</li>
+        <li>Opt out of the sale of personal data (we do not sell personal data)</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:floatprompt@gmail.com" class="contact-link">floatprompt@gmail.com</a>.</p>
+    </section>
+
+    <section>
+      <h2>10. Security</h2>
+      <p>We take reasonable measures to protect your data. All user content remains on your device and is not transmitted to external servers.</p>
+    </section>
+
+    <section>
+      <h2>11. Changes to This Policy</h2>
+      <ul>
+        <li>We may update this Privacy Policy from time to time. Any changes will be reflected by the "Last modified" date at the top of this policy.</li>
+        <li>We will notify users of material changes through an in-app notice.</li>
+        <li>Continued use of the App after changes constitutes acceptance of the updated policy.</li>
+      </ul>
+    </section>
+
+    <section class="contact-section">
+      <h2>12. Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, please contact us:</p>
+      <p style="margin-top: 20px; font-size: 1.1em;"><a href="mailto:floatprompt@gmail.com" class="contact-link">floatprompt@gmail.com</a></p>
+    </section>
+
+    <footer>
+      <p>© 2026 FloatPrompt. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
