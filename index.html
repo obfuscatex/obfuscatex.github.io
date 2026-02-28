@@ -449,17 +449,18 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
+            flex-wrap: wrap;
+            /* Allows the icon to naturally shift above text on tiny screens */
+            gap: 0.5rem 1rem;
             font-size: clamp(0.9rem, 4vw, 1.1rem);
             font-weight: 500;
             color: var(--text-primary);
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
             border-radius: 100px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             max-width: 100%;
-            word-break: break-all;
         }
 
         .email-link:hover {
