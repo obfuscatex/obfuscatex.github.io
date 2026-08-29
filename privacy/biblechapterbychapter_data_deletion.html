@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — Bible · Chapter By Chapter</title>
+    <title>Data Deletion — Bible · Chapter By Chapter</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
@@ -39,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* ── Ambient background ── */
         .ambient {
             position: fixed;
             inset: 0;
@@ -70,26 +68,15 @@
         }
 
         @keyframes drift1 {
-            from {
-                transform: translate(0, 0) scale(1);
-            }
-
-            to {
-                transform: translate(5%, 8%) scale(1.08);
-            }
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(5%, 8%) scale(1.08); }
         }
 
         @keyframes drift2 {
-            from {
-                transform: translate(0, 0) scale(1);
-            }
-
-            to {
-                transform: translate(-6%, -5%) scale(1.06);
-            }
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(-6%, -5%) scale(1.06); }
         }
 
-        /* Animated grid */
         .grid-bg {
             position: fixed;
             inset: 0;
@@ -103,16 +90,10 @@
         }
 
         @keyframes gridShift {
-            from {
-                background-position: 0 0;
-            }
-
-            to {
-                background-position: 52px 52px;
-            }
+            from { background-position: 0 0; }
+            to { background-position: 52px 52px; }
         }
 
-        /* Noise */
         .noise {
             position: fixed;
             inset: 0;
@@ -122,7 +103,6 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* ── Header ── */
         header {
             position: relative;
             z-index: 10;
@@ -181,7 +161,6 @@
             letter-spacing: 0.06em;
         }
 
-        /* ── Main layout ── */
         main {
             position: relative;
             z-index: 10;
@@ -190,7 +169,6 @@
             padding: 64px 24px 100px;
         }
 
-        /* ── Hero ── */
         .hero {
             text-align: center;
             margin-bottom: 60px;
@@ -198,15 +176,8 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-eyebrow {
@@ -247,7 +218,6 @@
             margin-top: 14px;
         }
 
-        /* Divider */
         .divider {
             display: flex;
             align-items: center;
@@ -271,7 +241,6 @@
             font-size: 14px;
         }
 
-        /* ── Summary card ── */
         .summary-card {
             background: rgba(74, 140, 92, 0.08);
             border: 1px solid rgba(74, 140, 92, 0.25);
@@ -314,46 +283,9 @@
             font-weight: 500;
         }
 
-        /* ── Sections ── */
         .section {
             margin-bottom: 40px;
             animation: fadeUp 0.6s ease both;
-        }
-
-        .section:nth-child(1) {
-            animation-delay: 0.05s;
-        }
-
-        .section:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .section:nth-child(3) {
-            animation-delay: 0.15s;
-        }
-
-        .section:nth-child(4) {
-            animation-delay: 0.2s;
-        }
-
-        .section:nth-child(5) {
-            animation-delay: 0.25s;
-        }
-
-        .section:nth-child(6) {
-            animation-delay: 0.3s;
-        }
-
-        .section:nth-child(7) {
-            animation-delay: 0.35s;
-        }
-
-        .section:nth-child(8) {
-            animation-delay: 0.4s;
-        }
-
-        .section:nth-child(9) {
-            animation-delay: 0.45s;
         }
 
         .section-header {
@@ -428,22 +360,71 @@
             border-color: rgba(126, 214, 149, 0.6);
         }
 
-        /* Sub-heading inside section */
-        .sub-heading {
-            font-size: 13px;
+        .steps {
+            background: rgba(74, 140, 92, 0.06);
+            border: 1px solid rgba(74, 140, 92, 0.15);
+            border-radius: 10px;
+            padding: 20px 20px 20px 24px;
+            margin: 16px 0;
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .steps li {
+            counter-increment: step;
+            display: flex;
+            gap: 12px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .steps li:last-child {
+            margin-bottom: 0;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            width: 24px;
+            height: 24px;
+            background: rgba(74, 140, 92, 0.2);
+            border: 1px solid rgba(74, 140, 92, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green-light);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px 22px;
+            background: linear-gradient(135deg, var(--green), #2d6040);
+            color: #fff;
+            text-decoration: none;
             font-weight: 600;
-            color: var(--green-pale);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            margin-top: 20px;
+            font-size: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(74, 140, 92, 0.3);
+            box-shadow: 0 4px 16px rgba(74, 140, 92, 0.25);
+            transition: all 0.25s ease;
         }
 
-        .sub-heading:first-child {
-            margin-top: 0;
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(74, 140, 92, 0.35);
+            background: linear-gradient(135deg, #5a9e6e, #35684a);
         }
 
-        /* List items */
         .item-list {
             display: flex;
             flex-direction: column;
@@ -475,36 +456,6 @@
             margin-top: 8px;
         }
 
-        .list-item strong {
-            color: rgba(255, 255, 255, 0.88);
-            font-weight: 500;
-        }
-
-        /* Privacy guarantee pills */
-        .guarantee-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .guarantee {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            background: rgba(74, 140, 92, 0.08);
-            border: 1px solid rgba(74, 140, 92, 0.2);
-            border-radius: 8px;
-            padding: 8px 14px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.65);
-        }
-
-        .guarantee .g-icon {
-            font-size: 14px;
-        }
-
-        /* Contact card */
         .contact-card {
             background: linear-gradient(135deg, rgba(74, 140, 92, 0.1) 0%, rgba(74, 140, 92, 0.05) 100%);
             border: 1px solid rgba(74, 140, 92, 0.28);
@@ -546,7 +497,6 @@
             box-shadow: 0 0 20px rgba(74, 140, 92, 0.2);
         }
 
-        /* ── Footer ── */
         footer {
             position: relative;
             z-index: 10;
@@ -555,7 +505,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: gap;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .footer-left {
@@ -570,7 +521,6 @@
             letter-spacing: 0.04em;
         }
 
-        /* Scroll reveal */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -583,251 +533,131 @@
         }
 
         @media (max-width: 640px) {
-            header {
-                padding: 0 20px;
-            }
-
-            main {
-                padding: 40px 16px 80px;
-            }
-
-            .section-body {
-                padding: 18px 20px;
-            }
-
-            .summary-card {
-                padding: 22px 20px;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
-                padding: 20px;
-            }
+            header { padding: 0 20px; }
+            main { padding: 40px 16px 80px; }
+            .section-body { padding: 18px 20px; }
+            .summary-card { padding: 22px 20px; }
+            footer { flex-direction: column; text-align: center; padding: 20px; }
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Ambient layers -->
     <div class="ambient"></div>
     <div class="grid-bg"></div>
     <div class="noise"></div>
 
-    <!-- Sticky header -->
     <header>
         <div class="logo">
             <div class="logo-icon">📖</div>
             <div>
                 <div class="logo-text">Bible · Chapter By Chapter</div>
-                <div class="logo-sub">Privacy Policy</div>
+                <div class="logo-sub">Data Deletion</div>
             </div>
         </div>
-        <div class="header-badge">Last Updated: Apr 12, 2026</div>
+        <div class="header-badge">Last Updated: Aug 29, 2026</div>
     </header>
 
-    <!-- Main content -->
     <main>
-
-        <!-- Hero -->
         <div class="hero">
-            <div class="hero-eyebrow">✝ &nbsp;Your Privacy Matters</div>
-            <h1>Privacy <em>Policy</em></h1>
+            <div class="hero-eyebrow">✝ &nbsp;Your Data, Your Control</div>
+            <h1>Data <em>Deletion</em></h1>
             <div class="divider">
                 <div class="line"></div>
                 <div class="sym">✦</div>
                 <div class="line r"></div>
             </div>
-            <div class="hero-date">Last Updated: April 12, 2026</div>
+            <div class="hero-date">Last Updated: August 29, 2026</div>
         </div>
 
-        <!-- Summary -->
         <div class="summary-card reveal">
             <div class="s-label">📋 &nbsp;Quick Summary</div>
-            <p>We respect your privacy completely. Your <strong>reading progress is stored only on your device</strong>
-                and never transmitted to us. We use <strong>Appodeal</strong>, an ad mediation platform, to display
-                ads. In the EU, a consent dialog is shown before any personalized data is collected. Outside
-                the EU, ads are contextual and do not track your behavior for targeted advertising.</p>
-            <div class="guarantee-row">
-                <div class="guarantee"><span class="g-icon">🔒</span> Data stays on your device</div>
-                <div class="guarantee"><span class="g-icon">🚫</span> No behavioral tracking</div>
-                <div class="guarantee"><span class="g-icon">✝</span> Built with integrity</div>
-            </div>
+            <p>Bible – Chapter by Chapter stores your reading progress <strong>only on your device</strong>. We have no servers and no accounts. You can delete all your data instantly from your device, or request deletion via email. Deletion is completed within <strong>7 days</strong>.</p>
         </div>
 
-        <!-- Section 1 -->
         <div class="section reveal">
             <div class="section-header">
                 <div class="section-num">1</div>
-                <h2>Introduction</h2>
+                <h2>Delete Directly on Your Device (Instant)</h2>
             </div>
             <div class="section-body">
-                <p>Welcome to <strong>Bible - Chapter By Chapter</strong> ("we," "our," or "us"). This Privacy Policy
-                    explains how we collect, use, and protect your information when you use our mobile application.</p>
+                <p>The fastest way — no email needed:</p>
+                <ol class="steps">
+                    <li>Open <strong>Settings</strong> on your Android device</li>
+                    <li>Go to <strong>Apps</strong> → <strong>Bible – Chapter By Chapter</strong></li>
+                    <li>Tap <strong>Storage</strong> → <strong>Clear Data</strong> (or <strong>Clear Storage</strong>)</li>
+                    <li>Alternatively, simply <strong>uninstall the app</strong> — this removes all local data</li>
+                </ol>
+                <p>This immediately deletes your reading progress, quiz scores, notification preferences, and reading streaks from your device.</p>
             </div>
         </div>
 
-        <!-- Section 2 -->
         <div class="section reveal">
             <div class="section-header">
                 <div class="section-num">2</div>
-                <h2>Information We Collect</h2>
+                <h2>Request Deletion via Email</h2>
             </div>
             <div class="section-body">
-                <div class="sub-heading">2.1 — Information Stored Locally</div>
-                <p>The following data is stored <strong>only on your device</strong> and is never transmitted to us:</p>
+                <p>If you need assistance or want confirmation that no server-side data exists for your device, contact us at:</p>
+                <p style="margin-top: 14px;"><a href="mailto:obfuscatexapps@gmail.com?subject=Bible%20Chapter%20By%20Chapter%20-%20Data%20Deletion%20Request" style="font-size: 16px; font-weight: 600;">obfuscatexapps@gmail.com</a></p>
+                <a href="mailto:obfuscatexapps@gmail.com?subject=Bible%20Chapter%20By%20Chapter%20-%20Data%20Deletion%20Request&body=Hello%20ObfuscateX%20team%2C%0A%0AI%20would%20like%20to%20request%20confirmation%20of%20data%20deletion%20for%20Bible%20-%20Chapter%20By%20Chapter.%0A%0AThank%20you." class="cta-button">✉ &nbsp;Send Deletion Request Email</a>
+                <p style="margin-top: 16px;">We will confirm by reply email that no account or server data is associated with your installation.</p>
+            </div>
+        </div>
+
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <h2>What Data Is Deleted</h2>
+            </div>
+            <div class="section-body">
                 <div class="item-list">
                     <div class="list-item">Reading progress (chapters completed)</div>
                     <div class="list-item">Quiz scores and history</div>
                     <div class="list-item">Notification preferences and reminder settings</div>
                     <div class="list-item">Reading streaks</div>
                 </div>
-
-                <div class="sub-heading">2.2 — Information Collected by Third Parties</div>
-                <p>We use <strong>Appodeal</strong>, an ad mediation platform, to display advertisements.
-                    Appodeal mediates across multiple ad networks (such as Meta, AppLovin, Unity Ads, Mintegral,
-                    and others) to serve ads in our app. In regions covered by GDPR (EU/EEA), a consent dialog
-                    is presented before any personal data is collected. These third-party ad services may collect
-                    limited technical information, such as:</p>
-                <div class="item-list">
-                    <div class="list-item">Device advertising identifiers (for frequency capping, aggregated reporting,
-                        and fraud/invalid click prevention)</div>
-                    <div class="list-item">IP address (anonymized/truncated)</div>
-                    <div class="list-item">App usage statistics and interactions with the ad</div>
-                    <div class="list-item">Crash logs & diagnostics</div>
-                    <div class="list-item">Device information (model, OS version)</div>
-                </div>
-                <p>For more information on how our ad partners use your data, please review:</p>
-                <div class="item-list">
-                    <div class="list-item"><a href="https://www.appodeal.com/privacy-policy" target="_blank">Appodeal's
-                            Privacy Policy</a></div>
-                    <div class="list-item"><a href="https://www.facebook.com/privacy/policy/" target="_blank">Meta's
-                            Privacy Policy</a></div>
-                    <div class="list-item"><a href="https://www.applovin.com/privacy/" target="_blank">AppLovin's
-                            Privacy Policy</a></div>
-                    <div class="list-item"><a href="https://unity.com/legal/privacy-policy" target="_blank">Unity's
-                            Privacy Policy</a></div>
-                </div>
+                <p>All data is stored locally via Android DataStore. We do not operate servers that store your reading data, and we do not create accounts.</p>
+                <p><strong>Advertising:</strong> Ads are served by Appodeal and its mediated networks. Ad-related data (advertising ID, IP) is governed by <a href="https://www.appodeal.com/privacy-policy" target="_blank">Appodeal's Privacy Policy</a> and respective network policies. To reset your advertising ID, go to device Settings → Privacy → Ads → Reset advertising ID.</p>
             </div>
         </div>
 
-        <!-- Section 3 -->
-        <div class="section reveal">
-            <div class="section-header">
-                <div class="section-num">3</div>
-                <h2>How We Use Information</h2>
-            </div>
-            <div class="section-body">
-                <div class="item-list">
-                    <div class="list-item"><strong>Local Data:</strong> To save your progress and provide a personalized
-                        reading experience</div>
-                    <div class="list-item"><strong>Advertising Data:</strong> To display contextual, non-personalized
-                        advertisements to support the free app</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4 -->
         <div class="section reveal">
             <div class="section-header">
                 <div class="section-num">4</div>
-                <h2>Data Sharing</h2>
+                <h2>What Happens After Your Request</h2>
             </div>
             <div class="section-body">
-                <p>We do <strong>not</strong> sell, trade, or share your personal information with third parties,
-                    except:</p>
                 <div class="item-list">
-                    <div class="list-item">Appodeal and its mediated ad networks (for advertising purposes, as
-                        described above)</div>
-                    <div class="list-item">When required by law or legal process</div>
+                    <div class="list-item">We confirm that no server-side account exists (the app is offline-first)</div>
+                    <div class="list-item">We provide instructions to clear local data if not already done</div>
+                    <div class="list-item">We reply by email to confirm completion</div>
+                    <div class="list-item"><strong>Timeline:</strong> Response and confirmation within <strong>7 days</strong> (usually within 48 hours)</div>
                 </div>
             </div>
         </div>
 
-        <!-- Section 5 -->
         <div class="section reveal">
             <div class="section-header">
                 <div class="section-num">5</div>
-                <h2>Data Security</h2>
-            </div>
-            <div class="section-body">
-                <p>Your reading progress and preferences are stored securely on your device using <strong>Android's
-                        DataStore</strong>. We do not have access to this data.</p>
-            </div>
-        </div>
-
-        <!-- Section 6 -->
-        <div class="section reveal">
-            <div class="section-header">
-                <div class="section-num">6</div>
-                <h2>Children's Privacy</h2>
-            </div>
-            <div class="section-body">
-                <p>Our app is suitable for all ages. We do not knowingly collect personal information from children
-                    under 13. The app displays strictly <strong>non-personalized ads</strong> for all users, completely
-                    avoiding any behavioral tracking.</p>
-            </div>
-        </div>
-
-        <!-- Section 7 -->
-        <div class="section reveal">
-            <div class="section-header">
-                <div class="section-num">7</div>
-                <h2>Your Rights</h2>
-            </div>
-            <div class="section-body">
-                <p>You have the right to:</p>
-                <div class="item-list">
-                    <div class="list-item"><strong>Delete your data:</strong> Clear app data from your device settings
-                        or uninstall the app</div>
-                    <div class="list-item"><strong>Disable notifications:</strong> Turn off reminders in the app's
-                        Settings screen</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 8 -->
-        <div class="section reveal">
-            <div class="section-header">
-                <div class="section-num">8</div>
-                <h2>Changes to This Policy</h2>
-            </div>
-            <div class="section-body">
-                <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by
-                    updating the "Last Updated" date at the top of this page.</p>
-            </div>
-        </div>
-
-        <!-- Section 9 — Contact -->
-        <div class="section reveal">
-            <div class="section-header">
-                <div class="section-num">9</div>
                 <h2>Contact Us</h2>
             </div>
             <div class="contact-card">
-                <p style="font-size:15px;color:rgba(255,255,255,0.62);line-height:1.7;font-weight:300;">If you have any
-                    questions about this Privacy Policy or our practices, please reach out — we'd love to hear from you.
-                </p>
+                <p style="font-size:15px;color:rgba(255,255,255,0.62);line-height:1.7;font-weight:300;">Questions about data deletion or privacy? We'd love to help.</p>
                 <a class="contact-email" href="mailto:obfuscatexapps@gmail.com">
                     <span>✉</span>
                     obfuscatexapps@gmail.com
                 </a>
-                <p style="margin-top: 16px; font-size: 13px;"><a href="biblechapterbychapter_data_deletion.html" style="color: var(--green-light); border-bottom: 1px solid rgba(106,191,128,0.3);">Request Data Deletion →</a></p>
+                <p style="margin-top: 16px; font-size: 13px; color: var(--text-dim);"><a href="biblechapterbychapter_privacy_policy.html" style="color: var(--green-light); border-bottom: 1px solid rgba(106,191,128,0.3);">View Privacy Policy</a></p>
             </div>
         </div>
-
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-left">Bible · Chapter By Chapter &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; v1.6.4</div>
+        <div class="footer-left">Bible · Chapter By Chapter &nbsp;·&nbsp; Data Deletion &nbsp;·&nbsp; v1.6.4</div>
         <div class="footer-right">© 2026 Bible – Chapter By Chapter</div>
     </footer>
 
     <script>
-        // Scroll reveal
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -839,7 +669,6 @@
         }, { threshold: 0.08 });
         reveals.forEach(el => observer.observe(el));
 
-        // Parallax ambient on mouse
         const ambient = document.querySelector('.ambient');
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 20;
@@ -848,5 +677,4 @@
         });
     </script>
 </body>
-
 </html>
