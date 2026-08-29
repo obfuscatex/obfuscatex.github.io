@@ -3,311 +3,121 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FloatPrompt - Data Deletion Request</title>
+  <title>FloatPrompt — Data Deletion | ObfuscateX</title>
+  <meta name="description" content="Request deletion of your FloatPrompt account and cloud data.">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎥</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg-color: #050505;
+      --surface-color: #121212;
+      --surface-color-hover: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #d946ef);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
     }
-
-    body {
-      font-family: 'Courier New', monospace;
-      background: linear-gradient(135deg, #0a0e27 0%, #1a0a3e 50%, #2d0a4e 100%);
-      color: #e0e6ff;
-      line-height: 1.8;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 0, 136, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-      animation: drift 15s ease-in-out infinite;
-      z-index: -1;
-    }
-
-    @keyframes drift {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -20px); }
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 30px;
-      position: relative;
-      z-index: 1;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
+    h1, h2, .brand-font { font-family: 'Outfit', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
+    .text-gradient { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     header {
-      text-align: center;
-      margin-bottom: 60px;
-      position: relative;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(5,5,5,0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between;
     }
-
-    h1 {
-      font-size: 3.5em;
-      margin-bottom: 10px;
-      background: linear-gradient(120deg, #ff00ff, #00ffff, #ff00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
-      letter-spacing: 2px;
-      animation: glow 3s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5)); }
-      50% { filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8)); }
-    }
-
-    .last-modified {
-      color: #00ffff;
-      font-size: 0.9em;
-      font-style: italic;
-      margin-top: 15px;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    }
-
-    .divider {
-      width: 200px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
-      margin: 30px auto;
-      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-    }
-
-    h2 {
-      font-size: 1.8em;
-      margin-top: 50px;
-      margin-bottom: 25px;
-      color: #00ffff;
-      text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-      border-left: 4px solid #ff00ff;
-      padding-left: 20px;
-      letter-spacing: 1px;
-    }
-
-    section {
-      margin-bottom: 40px;
-      padding: 25px;
-      background: rgba(20, 10, 50, 0.4);
-      border: 1px solid rgba(255, 0, 255, 0.2);
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-      box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.1), 0 0 20px rgba(255, 0, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    section:hover {
-      border-color: rgba(255, 0, 255, 0.4);
-      box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.15), 0 0 30px rgba(255, 0, 255, 0.2);
-    }
-
-    p {
-      margin-bottom: 15px;
-      font-size: 1.05em;
-      letter-spacing: 0.5px;
-    }
-
-    ul {
-      list-style: none;
-      margin-left: 20px;
-    }
-
-    ul li {
-      margin-bottom: 15px;
-      padding-left: 30px;
-      position: relative;
-      font-size: 1.05em;
-    }
-
-    ul li::before {
-      content: '\25B8';
-      position: absolute;
-      left: 0;
-      color: #ff00ff;
-      font-size: 1.5em;
-      text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
-    }
-
-    ol {
-      margin-left: 20px;
-      margin-bottom: 15px;
-    }
-
-    ol li {
-      margin-bottom: 12px;
-      padding-left: 10px;
-      font-size: 1.05em;
-    }
-
-    .highlight-section {
-      background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
-      border: 2px solid #ff00ff;
-    }
-
-    .contact-section {
-      background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
-      border: 2px solid #ff00ff;
-    }
-
-    .contact-link {
-      color: #00ffff;
-      text-decoration: none;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-      transition: all 0.3s ease;
-      border-bottom: 2px solid rgba(0, 255, 255, 0.5);
-    }
-
-    .contact-link:hover {
-      color: #ff00ff;
-      text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
-      border-bottom-color: #ff00ff;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 14px 28px;
-      background: linear-gradient(135deg, #ff00ff, #8b5cf6);
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.05em;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
-      background: linear-gradient(135deg, #ff33ff, #9b6cf6);
-    }
-
-    .steps {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      border-radius: 8px;
-      padding: 20px 20px 20px 35px;
-      margin: 20px 0;
-    }
-
-    .steps li {
-      color: #e0e6ff;
-    }
-
-    .steps li::before {
-      content: none;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 0, 255, 0.03),
-        rgba(255, 0, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 0, 255, 0.2);
-      color: #888;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5em;
-      }
-
-      h2 {
-        font-size: 1.4em;
-      }
-
-      .container {
-        padding: 30px 20px;
-      }
-
-      section {
-        padding: 20px;
-      }
-    }
+    .logo { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; }
+    .header-badge { font-size: 11.5px; color: var(--text-secondary); background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 100px; }
+    .hero { text-align: center; padding: 64px 2rem 48px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -10%; left: -10%; width: 55vw; height: 55vw; background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%); z-index: -1; }
+    .hero-tag { display: inline-block; padding: 0.35rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 100px; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 0.4rem; }
+    .hero-date { color: var(--text-secondary); font-size: 0.85rem; letter-spacing: 0.04em; }
+    .divider { width: 80px; height: 2px; background: var(--accent-gradient); margin: 1.2rem auto 0; border-radius: 2px; opacity: 0.7; }
+    main { padding: 0 2rem 80px; }
+    .section { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+    .section.highlight { background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08)); border-color: rgba(139,92,246,0.2); }
+    .section.contact { background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06)); text-align: center; }
+    .section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; }
+    .section p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { margin: 8px 0 12px 18px; }
+    .section li { font-size: 0.93rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.6; }
+    .section li strong { color: var(--text-primary); font-weight: 600; }
+    .section a { color: #93c5fd; border-bottom: 1px solid rgba(147,197,253,0.25); }
+    .section a:hover { color: #c4b5fd; border-color: #c4b5fd; }
+    .steps { background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 18px 18px 24px; margin: 16px 0; list-style: none; counter-reset: step; }
+    .steps li { counter-increment: step; display: flex; gap: 12px; font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 10px; }
+    .steps li:last-child { margin-bottom: 0; }
+    .steps li::before { content: counter(step); width: 24px; height: 24px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #c4b5fd; flex-shrink: 0; margin-top: 1px; }
+    .cta-button { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 12px 22px; background: var(--text-primary); color: var(--bg-color); border-radius: 12px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+    .cta-button:hover { background: #e4e4e7; transform: translateY(-1px); }
+    .bottom-nav { text-align: center; margin-top: 32px; font-size: 0.9rem; color: var(--text-secondary); }
+    .bottom-nav a { color: var(--text-primary); border-bottom: 1px solid var(--border-color); margin: 0 8px; }
+    .bottom-nav a:hover { color: #c4b5fd; border-color: #c4b5fd; }
+    footer { text-align: center; padding: 28px; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.82rem; background: #000; }
+    @media (max-width: 640px) { header { padding: 0 1rem; } .hero { padding: 48px 1rem 36px; } main { padding: 0 1rem 60px; } .section { padding: 20px; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>FloatPrompt</h1>
-      <div class="divider"></div>
-      <p class="last-modified">Data Deletion Request | Last Modified: August 29, 2026</p>
-    </header>
+  <header>
+    <a href="../index.html" class="logo text-gradient">ObfuscateX</a>
+    <div class="header-badge">Last Modified: Aug 29, 2026</div>
+  </header>
 
-    <section>
+  <div class="hero">
+    <div class="hero-tag">FloatPrompt — Teleprompter</div>
+    <h1>Data Deletion</h1>
+    <div class="divider"></div>
+    <p class="hero-date">Last Modified: August 29, 2026</p>
+  </div>
+
+  <main class="container">
+    <div class="section">
       <h2>Overview</h2>
       <p>You can delete your FloatPrompt account and all associated data at any time. We provide two methods: directly inside the app (instant) and via email request.</p>
-      <p>This page explains what gets deleted, how to request it, and what happens after your request.</p>
-    </section>
+    </div>
 
-    <section class="highlight-section">
-      <h2>1. Delete Directly in the App (Recommended - Instant)</h2>
+    <div class="section highlight">
+      <h2>1. Delete Directly in the App (Recommended — Instant)</h2>
       <p>The fastest way to delete your account and cloud data:</p>
       <ol class="steps">
-        <li>Open <strong>FloatPrompt</strong> on your device</li>
-        <li>Go to <strong>Settings</strong> (gear icon)</li>
-        <li>Under <strong>Cloud</strong>, tap <strong>Delete Account</strong></li>
+        <li>Open <strong style="color:var(--text-primary);">FloatPrompt</strong> on your device</li>
+        <li>Go to <strong style="color:var(--text-primary);">Settings</strong> (gear icon)</li>
+        <li>Under <strong style="color:var(--text-primary);">Cloud</strong>, tap <strong style="color:var(--text-primary);">Delete Account</strong></li>
         <li>Confirm deletion in the dialog</li>
       </ol>
       <p>This immediately deletes your Firebase authentication, all scripts stored in Firebase Firestore, and disables Cloud Sync. This action cannot be undone.</p>
-      <p><strong>Note:</strong> You must be signed in to use this option. If you cannot sign in, use the email method below.</p>
-    </section>
+      <p><strong style="color:var(--text-primary);">Note:</strong> You must be signed in to use this option. If you cannot sign in, use the email method below.</p>
+    </div>
 
-    <section>
+    <div class="section">
       <h2>2. Request Deletion via Email</h2>
       <p>If you cannot access the app or prefer to request deletion by email, contact us at:</p>
-      <p style="margin-top: 20px; font-size: 1.2em;"><a href="mailto:obfuscatexapps@gmail.com?subject=FloatPrompt%20-%20Data%20Deletion%20Request" class="contact-link">obfuscatexapps@gmail.com</a></p>
-      <a href="mailto:obfuscatexapps@gmail.com?subject=FloatPrompt%20-%20Data%20Deletion%20Request&body=Hello%20ObfuscateX%20team%2C%0A%0AI%20would%20like%20to%20request%20deletion%20of%20my%20FloatPrompt%20account%20and%20all%20associated%20data.%0A%0AEmail%20associated%20with%20account%3A%20%0A%0AThank%20you." class="cta-button">Send Deletion Request Email</a>
-      <p style="margin-top: 20px;">Please include the <strong>email address associated with your Google Sign-In</strong> so we can locate your account.</p>
-    </section>
+      <p style="margin-top:14px;"><a href="mailto:obfuscatexapps@gmail.com?subject=FloatPrompt%20-%20Data%20Deletion%20Request" style="font-size:1.05rem; font-weight:600;">obfuscatexapps@gmail.com</a></p>
+      <a href="mailto:obfuscatexapps@gmail.com?subject=FloatPrompt%20-%20Data%20Deletion%20Request&body=Hello%20ObfuscateX%20team%2C%0A%0AI%20would%20like%20to%20request%20deletion%20of%20my%20FloatPrompt%20account%20and%20all%20associated%20data.%0A%0AEmail%20associated%20with%20account%3A%20%0A%0AThank%20you." class="cta-button">✉ &nbsp;Send Deletion Request Email</a>
+      <p style="margin-top:16px;">Please include the <strong>email address associated with your Google Sign-In</strong> so we can locate your account.</p>
+    </div>
 
-    <section>
+    <div class="section">
       <h2>3. What Data Is Deleted</h2>
       <ul>
         <li><strong>Firebase Authentication:</strong> Your account identifier (UID), display name linkage</li>
         <li><strong>Cloud Firestore:</strong> All scripts synced to the cloud (title, content, folder, scroll speed, font size, mirror setting, last modified timestamp)</li>
         <li><strong>Cloud Sync preference:</strong> Disabled and cleared</li>
       </ul>
-      <p><strong>Not affected:</strong> Scripts and recordings stored only locally on your device are not deleted by the cloud deletion. To remove local data, clear app data or uninstall the app from your device settings.</p>
-    </section>
+      <p><strong>Not affected:</strong> Scripts and recordings stored only locally on your device are not deleted by the cloud deletion. To remove local data, clear app data or uninstall the app.</p>
+    </div>
 
-    <section>
+    <div class="section">
       <h2>4. What Happens After Your Request</h2>
       <ul>
         <li>We verify the email matches a Firebase account in our project</li>
@@ -316,27 +126,27 @@
         <li><strong>Timeline:</strong> Deletion is completed within <strong>7 days</strong> of receiving your request (usually within 48 hours)</li>
         <li>After deletion, your subscription (if any) remains managed by Google Play — please cancel it separately in Google Play if you no longer wish to be charged</li>
       </ul>
-    </section>
+    </div>
 
-    <section>
+    <div class="section">
       <h2>5. Retention</h2>
       <ul>
         <li>Once deleted, cloud data cannot be recovered</li>
         <li>We do not retain backups of deleted accounts</li>
         <li>Local data on your device is under your control and is removed when you uninstall the app</li>
       </ul>
-    </section>
+    </div>
 
-    <section class="contact-section">
+    <div class="section contact">
       <h2>6. Contact Us</h2>
       <p>If you have questions about data deletion or privacy, contact us:</p>
-      <p style="margin-top: 20px; font-size: 1.1em;"><a href="mailto:obfuscatexapps@gmail.com" class="contact-link">obfuscatexapps@gmail.com</a></p>
-      <p style="margin-top: 15px;"><a href="floatprompt_teleprompter_privacy_policy.html" class="contact-link">View Privacy Policy</a></p>
-    </section>
+      <p style="margin-top:12px;"><a href="mailto:obfuscatexapps@gmail.com" style="font-size:1.05rem; font-weight:600;">obfuscatexapps@gmail.com</a></p>
+      <p style="margin-top:14px; font-size:0.9rem;"><a href="floatprompt_teleprompter_privacy_policy.html">View Privacy Policy →</a></p>
+    </div>
 
-    <footer>
-      <p>&copy; 2026 FloatPrompt by ObfuscateX. All rights reserved.</p>
-    </footer>
-  </div>
+    <p class="bottom-nav"><a href="../floatprompt.html">← FloatPrompt</a> <a href="../index.html">ObfuscateX Home</a></p>
+  </main>
+
+  <footer>© 2026 FloatPrompt by ObfuscateX. All rights reserved.</footer>
 </body>
 </html>

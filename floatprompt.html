@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloatPrompt — Teleprompter | ObfuscateX</title>
+    <meta name="description" content="FloatPrompt is a professional teleprompter app for creators and presenters — floating overlay, customizable scrolling, camera recording and cloud sync.">
+    <meta name="theme-color" content="#050505">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎥</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --surface-color: #121212;
+            --surface-color-hover: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #d946ef);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+            --card-shadow-hover: 0 20px 40px -10px rgba(139, 92, 246, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .brand-font { font-family: 'Outfit', sans-serif; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.1rem 0;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links .btn-small {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            padding: 0.5rem 1.1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .nav-links .btn-small:hover { background: #e4e4e7; color: var(--bg-color); }
+        @media (max-width: 768px) { .nav-links a.hide-mobile { display: none; } }
+
+        .hero {
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%; left: -10%;
+            width: 55vw; height: 55vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%);
+            z-index: -1;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%; right: -10%;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(217,70,239,0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+        .hero-tag {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.06;
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+        }
+        .hero h1 span { font-weight: 400; color: var(--text-secondary); font-size: 0.55em; letter-spacing: -0.5px; }
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 560px;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.9rem 1.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-primary { background: var(--text-primary); color: var(--bg-color); }
+        .btn-primary:hover { background: #e4e4e7; transform: translateY(-1px); }
+        .btn-secondary { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { border-color: var(--text-secondary); color: var(--text-primary); background: rgba(255,255,255,0.03); }
+
+        .hero-visual {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0.9;
+        }
+        .visual-icon {
+            width: 64px; height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(217,70,239,0.12));
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.9rem; margin-bottom: 1.2rem;
+        }
+        .visual-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .visual-text { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.2rem; }
+        .visual-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 0.35rem 0.75rem;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .badge.pro { background: rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.25); color: #c4b5fd; }
+
+        .section { padding: 5rem 0; position: relative; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; margin-bottom: 0.7rem; }
+        .section-header p { color: var(--text-secondary); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+        }
+        @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
+        .feature-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover { border-color: rgba(255,255,255,0.14); background: var(--surface-color-hover); transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
+        .feature-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); }
+        .feature-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        @media (max-width: 700px) { .links-grid { grid-template-columns: 1fr; } }
+        .link-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .link-card:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-3px); }
+        .link-card h3 { margin-bottom: 0.5rem; }
+        .link-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.2rem; }
+        .link-card .btn { width: 100%; }
+
+        .legal-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .legal-note a { color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        .legal-note a:hover { color: #c4b5fd; border-color: #c4b5fd; }
+
+        footer {
+            padding: 2.2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo text-gradient">ObfuscateX</a>
+            <nav class="nav-links">
+                <a href="index.html#apps" class="hide-mobile">Apps</a>
+                <a href="index.html#about" class="hide-mobile">About</a>
+                <a href="index.html#contact" class="hide-mobile">Contact</a>
+                <a href="https://play.google.com/store/apps/details?id=com.floatprompt" target="_blank" rel="noopener noreferrer" class="btn-small">Get on Play</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <div class="hero-tag">Teleprompter for Creators & Presenters</div>
+                <h1>FloatPrompt <br><span>— Teleprompter</span></h1>
+                <p class="hero-desc">Professional floating teleprompter for flawless delivery. Scroll scripts over any app, record with your camera, and sync across devices.</p>
+                <div class="hero-actions">
+                    <a href="https://play.google.com/store/apps/details?id=com.floatprompt" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                        Get it on Google Play
+                    </a>
+                    <a href="#links" class="btn btn-secondary">Privacy & Data</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-icon">🎥</div>
+                <div class="visual-title">Floating Teleprompter + Camera</div>
+                <p class="visual-text">Float your script over any app — camera, video calls, or presentations. Adjustable speed, font size, and mirror mode for perfect readability.</p>
+                <div class="visual-badges">
+                    <span class="badge">Overlay</span>
+                    <span class="badge pro">Camera Pro</span>
+                    <span class="badge pro">Cloud Sync Pro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built for flawless delivery</h2>
+                <p>Everything you need to read naturally on camera</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>Scripts & Folders</h3>
+                    <p>Create unlimited scripts (Pro), organize by folders, and edit with a clean, distraction-free editor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🪟</div>
+                    <h3>Floating Overlay</h3>
+                    <p>Display your script over any other app — camera, Zoom, or presentation — with adjustable opacity and position.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Camera Recording</h3>
+                    <p>Record video with your script scrolling in front of the camera. Keep eye contact while reading. <strong style="color:#c4b5fd;">Pro</strong></p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Sync</h3>
+                    <p>Sign in with Google and sync scripts across devices via Firebase. Secure and private. <strong style="color:#c4b5fd;">Pro</strong></p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Custom Controls</h3>
+                    <p>Adjust scroll speed, font size, and mirror mode. Pause, resume, and control smoothly while recording.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Private & Secure</h3>
+                    <p>Scripts stored locally in encrypted database. Cloud data protected by Firebase Security Rules.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="links" style="background: linear-gradient(to bottom, transparent, #09090b); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Links</h2>
+                <p>Privacy, data deletion, and support</p>
+            </div>
+            <div class="links-grid">
+                <div class="link-card">
+                    <h3>Privacy Policy</h3>
+                    <p>How we handle your data, permissions, and third-party services.</p>
+                    <a href="privacy/floatprompt_teleprompter_privacy_policy.html" class="btn btn-secondary">View Privacy Policy</a>
+                </div>
+                <div class="link-card">
+                    <h3>Data Deletion</h3>
+                    <p>Delete your account and cloud data — in-app or via email.</p>
+                    <a href="privacy/floatprompt_teleprompter_data_deletion.html" class="btn btn-secondary">Request Data Deletion</a>
+                </div>
+            </div>
+            <p class="legal-note">Questions? Contact <a href="mailto:obfuscatexapps@gmail.com">obfuscatexapps@gmail.com</a> &nbsp;·&nbsp; <a href="index.html">← Back to ObfuscateX</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 ObfuscateX. FloatPrompt — Teleprompter. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
