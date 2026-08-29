@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Bible - Chapter By Chapter</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@200;300;400;500&display=swap"
-        rel="stylesheet">
+    <title>Privacy Policy — Bible · Chapter By Chapter</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.04);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shine: rgba(255, 255, 255, 0.08);
-            --accent-gold: #c9a84c;
-            --accent-ice: #a8d8f0;
-            --accent-violet: #b39ddb;
-            --text-primary: rgba(255, 255, 255, 0.92);
-            --text-secondary: rgba(255, 255, 255, 0.55);
-            --text-muted: rgba(255, 255, 255, 0.35);
+            --green: #4a8c5c;
+            --green-light: #6abf80;
+            --green-pale: #7ed695;
+            --bg: #060a07;
+            --bg2: #0d1a10;
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(74, 140, 92, 0.18);
+            --text: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.45);
+            --text-dim: rgba(255, 255, 255, 0.25);
         }
 
         * {
@@ -27,435 +27,174 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 300;
-            background: #020816;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
-            color: var(--text-primary);
         }
 
-        /* ── Background ── */
-        .bg-canvas {
+        /* ── Ambient background ── */
+        .ambient {
             position: fixed;
             inset: 0;
+            pointer-events: none;
             z-index: 0;
-            overflow: hidden;
         }
 
-        .orb {
+        .ambient::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.35;
-            animation: drift 18s ease-in-out infinite alternate;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(ellipse, rgba(74, 140, 92, 0.12) 0%, transparent 70%);
+            animation: drift1 18s ease-in-out infinite alternate;
         }
 
-        .orb-1 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, #1a0533, #0d1b4b);
-            top: -200px;
-            left: -200px;
-            animation-duration: 22s;
+        .ambient::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 55%;
+            height: 55%;
+            background: radial-gradient(ellipse, rgba(74, 140, 92, 0.09) 0%, transparent 70%);
+            animation: drift2 22s ease-in-out infinite alternate;
         }
 
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #0a2a4a, #091a2f);
-            top: 30%;
-            right: -150px;
-            animation-duration: 16s;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #1c0a3a, #0a0c2e);
-            bottom: -100px;
-            left: 30%;
-            animation-duration: 20s;
-            animation-delay: -10s;
-        }
-
-        @keyframes drift {
+        @keyframes drift1 {
             from {
                 transform: translate(0, 0) scale(1);
             }
 
             to {
-                transform: translate(40px, 60px) scale(1.08);
+                transform: translate(5%, 8%) scale(1.08);
             }
         }
 
-        /* Stars */
-        .stars {
-            position: absolute;
+        @keyframes drift2 {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(-6%, -5%) scale(1.06);
+            }
+        }
+
+        /* Animated grid */
+        .grid-bg {
+            position: fixed;
             inset: 0;
+            pointer-events: none;
+            z-index: 0;
             background-image:
-                radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
-                radial-gradient(1px 1px at 25% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 50% 8%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 70% 25%, rgba(255, 255, 255, 0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 85% 60%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 40% 75%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 90% 85%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
-                radial-gradient(1px 1px at 15% 90%, rgba(255, 255, 255, 0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 60% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
-                radial-gradient(1.5px 1.5px at 33% 60%, rgba(168, 216, 240, 0.7) 0%, transparent 100%),
-                radial-gradient(1.5px 1.5px at 77% 10%, rgba(201, 168, 76, 0.6) 0%, transparent 100%),
-                radial-gradient(1.5px 1.5px at 5% 50%, rgba(179, 157, 219, 0.6) 0%, transparent 100%);
+                linear-gradient(rgba(74, 140, 92, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 140, 92, 0.04) 1px, transparent 1px);
+            background-size: 52px 52px;
+            animation: gridShift 30s linear infinite;
         }
 
-        /* Prismatic light streak */
-        .light-streak {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 60vh;
-            background: linear-gradient(to bottom, rgba(201, 168, 76, 0.4), transparent);
-            box-shadow: 0 0 40px 20px rgba(201, 168, 76, 0.06);
+        @keyframes gridShift {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 52px 52px;
+            }
         }
 
-        /* ── Page Layout ── */
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-            padding: 60px 20px 80px;
-            max-width: 860px;
-            margin: 0 auto;
+        /* Noise */
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
         /* ── Header ── */
-        .header {
-            text-align: center;
-            margin-bottom: 56px;
-            animation: fadeUp 1s ease both;
-        }
-
-        .app-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(20px);
-            border-radius: 100px;
-            padding: 6px 18px;
-            font-size: 0.78rem;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            margin-bottom: 24px;
-            box-shadow: 0 0 24px rgba(201, 168, 76, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .app-badge .icon {
-            font-size: 1rem;
-        }
-
-        h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.4rem, 6vw, 3.8rem);
-            font-weight: 300;
-            letter-spacing: 0.04em;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #ffffff 0%, #c9a84c 40%, #a8d8f0 80%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 14px;
-        }
-
-        .last-updated {
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        /* Divider */
-        .divider {
+        header {
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid var(--border);
+            background: rgba(6, 10, 7, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 0 40px;
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin: 32px 0;
-            opacity: 0.4;
-        }
-
-        .divider-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
-        }
-
-        .divider-gem {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-gold);
-            transform: rotate(45deg);
-            box-shadow: 0 0 10px rgba(201, 168, 76, 0.8);
-        }
-
-        /* ── Summary Card ── */
-        .summary-card {
-            position: relative;
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.06) 0%, rgba(168, 216, 240, 0.04) 100%);
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            backdrop-filter: blur(40px);
-            border-radius: 20px;
-            padding: 28px 32px;
-            margin-bottom: 40px;
-            overflow: hidden;
-            animation: fadeUp 1s 0.2s ease both;
-        }
-
-        .summary-card::before {
-            content: '';
-            position: absolute;
+            justify-content: space-between;
+            height: 68px;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.6), rgba(168, 216, 240, 0.4), transparent);
         }
 
-        .summary-label {
-            font-size: 0.68rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            margin-bottom: 10px;
-            font-weight: 500;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .summary-card p {
-            color: rgba(255, 255, 255, 0.72);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ── Glass Panels ── */
-        .glass-panel {
-            position: relative;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border-radius: 20px;
-            padding: 36px 40px;
-            margin-bottom: 16px;
-            overflow: hidden;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-            animation: fadeUp 1s ease both;
-        }
-
-        .glass-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--glass-shine), transparent);
-        }
-
-        .glass-panel::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--glass-shine), transparent);
-        }
-
-        .glass-panel:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 48px rgba(0, 0, 0, 0.3), inset 0 0 60px rgba(255, 255, 255, 0.01);
-        }
-
-        /* Section number badge */
-        .section-num {
-            display: inline-flex;
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--green), #2d6040);
+            border-radius: 10px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            color: var(--accent-gold);
-            font-size: 0.72rem;
-            font-weight: 500;
-            margin-bottom: 14px;
-            background: rgba(201, 168, 76, 0.06);
+            font-size: 18px;
+            box-shadow: 0 0 16px rgba(74, 140, 92, 0.3);
         }
 
-        h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.03em;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 16px;
+        .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.02em;
         }
 
-        h3 {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
+        .logo-sub {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--accent-ice);
-            margin-top: 24px;
-            margin-bottom: 12px;
         }
 
-        p {
-            font-size: 0.92rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 14px;
-        }
-
-        /* ── Crystal List ── */
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 12px 0 20px;
-        }
-
-        ul li {
-            position: relative;
-            padding: 10px 16px 10px 36px;
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-            margin-bottom: 4px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        ul li:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(168, 216, 240, 0.15);
-        }
-
-        ul li::before {
-            content: '◆';
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.45rem;
-            color: var(--accent-gold);
-            opacity: 0.8;
-        }
-
-        ul li strong {
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 500;
-        }
-
-        ul li a {
-            color: var(--accent-ice);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(168, 216, 240, 0.2);
-            transition: border-color 0.2s;
-        }
-
-        ul li a:hover {
-            border-color: rgba(168, 216, 240, 0.6);
-        }
-
-        /* Sub-panel for nested content */
-        .sub-panel {
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 14px;
-            padding: 20px 24px;
-            margin-top: 20px;
-        }
-
-        /* ── Contact Panel ── */
-        .contact-panel {
-            position: relative;
-            background: linear-gradient(135deg, rgba(168, 216, 240, 0.05) 0%, rgba(179, 157, 219, 0.05) 100%);
-            border: 1px solid rgba(168, 216, 240, 0.15);
-            backdrop-filter: blur(40px);
-            border-radius: 20px;
-            padding: 36px 40px;
-            margin-top: 16px;
-            overflow: hidden;
-        }
-
-        .contact-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(168, 216, 240, 0.5), rgba(179, 157, 219, 0.4), transparent);
-        }
-
-        .email-display {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: rgba(168, 216, 240, 0.06);
-            border: 1px solid rgba(168, 216, 240, 0.2);
+        .header-badge {
+            font-size: 11.5px;
+            color: var(--green-light);
+            background: rgba(74, 140, 92, 0.1);
+            border: 1px solid rgba(74, 140, 92, 0.25);
+            padding: 5px 14px;
             border-radius: 100px;
-            font-size: 0.88rem;
-            color: var(--accent-ice);
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
         }
 
-        .email-icon {
-            font-size: 0.9rem;
-            opacity: 0.7;
+        /* ── Main layout ── */
+        main {
+            position: relative;
+            z-index: 10;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 64px 24px 100px;
         }
 
-        /* Stagger animations */
-        .glass-panel:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .glass-panel:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .glass-panel:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        .glass-panel:nth-child(4) {
-            animation-delay: 0.25s;
-        }
-
-        .glass-panel:nth-child(5) {
-            animation-delay: 0.3s;
-        }
-
-        .glass-panel:nth-child(6) {
-            animation-delay: 0.35s;
-        }
-
-        .glass-panel:nth-child(7) {
-            animation-delay: 0.4s;
-        }
-
-        .glass-panel:nth-child(8) {
-            animation-delay: 0.45s;
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeUp 0.7s ease both;
         }
 
         @keyframes fadeUp {
@@ -470,26 +209,401 @@
             }
         }
 
-        /* Footer */
-        .footer-note {
-            text-align: center;
-            margin-top: 48px;
-            font-size: 0.72rem;
-            letter-spacing: 0.12em;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 140, 92, 0.1);
+            border: 1px solid rgba(74, 140, 92, 0.28);
+            color: var(--green-pale);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            padding: 7px 20px;
+            border-radius: 100px;
+            margin-bottom: 24px;
         }
 
-        @media (max-width: 600px) {
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 6vw, 62px);
+            font-weight: 700;
+            line-height: 1.06;
+            letter-spacing: -0.02em;
+            color: #fff;
+            margin-bottom: 8px;
+        }
 
-            .glass-panel,
-            .contact-panel,
-            .summary-card {
-                padding: 24px 22px;
+        .hero h1 em {
+            color: var(--green-light);
+            font-style: italic;
+        }
+
+        .hero-date {
+            font-size: 13px;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            margin-top: 14px;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 12px 0 40px;
+            justify-content: center;
+        }
+
+        .divider .line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 140, 92, 0.5));
+        }
+
+        .divider .line.r {
+            background: linear-gradient(90deg, rgba(74, 140, 92, 0.5), transparent);
+        }
+
+        .divider .sym {
+            color: rgba(74, 140, 92, 0.7);
+            font-size: 14px;
+        }
+
+        /* ── Summary card ── */
+        .summary-card {
+            background: rgba(74, 140, 92, 0.08);
+            border: 1px solid rgba(74, 140, 92, 0.25);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 52px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.7s 0.1s ease both;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--green), var(--green-light), transparent);
+        }
+
+        .summary-card .s-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green-light);
+            margin-bottom: 10px;
+        }
+
+        .summary-card p {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .summary-card strong {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* ── Sections ── */
+        .section {
+            margin-bottom: 40px;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .section:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .section:nth-child(6) {
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+
+        .section:nth-child(8) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(9) {
+            animation-delay: 0.45s;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .section-num {
+            width: 30px;
+            height: 30px;
+            background: rgba(74, 140, 92, 0.12);
+            border: 1px solid rgba(74, 140, 92, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green-light);
+            flex-shrink: 0;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .section-body {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .section-body:hover {
+            border-color: rgba(74, 140, 92, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .section-body p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.62);
+            line-height: 1.7;
+            font-weight: 300;
+            margin-bottom: 14px;
+        }
+
+        .section-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-body strong {
+            color: rgba(255, 255, 255, 0.88);
+            font-weight: 500;
+        }
+
+        .section-body a {
+            color: var(--green-light);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(106, 191, 128, 0.3);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .section-body a:hover {
+            color: var(--green-pale);
+            border-color: rgba(126, 214, 149, 0.6);
+        }
+
+        /* Sub-heading inside section */
+        .sub-heading {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green-pale);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .sub-heading:first-child {
+            margin-top: 0;
+        }
+
+        /* List items */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 14px;
+        }
+
+        .item-list:last-child {
+            margin-bottom: 0;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.62);
+            line-height: 1.55;
+            font-weight: 300;
+        }
+
+        .list-item::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--green);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .list-item strong {
+            color: rgba(255, 255, 255, 0.88);
+            font-weight: 500;
+        }
+
+        /* Privacy guarantee pills */
+        .guarantee-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .guarantee {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(74, 140, 92, 0.08);
+            border: 1px solid rgba(74, 140, 92, 0.2);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .guarantee .g-icon {
+            font-size: 14px;
+        }
+
+        /* Contact card */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(74, 140, 92, 0.1) 0%, rgba(74, 140, 92, 0.05) 100%);
+            border: 1px solid rgba(74, 140, 92, 0.28);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::after {
+            content: '✝';
+            position: absolute;
+            right: 24px;
+            bottom: 16px;
+            font-size: 80px;
+            color: rgba(74, 140, 92, 0.05);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(74, 140, 92, 0.12);
+            border: 1px solid rgba(74, 140, 92, 0.3);
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin-top: 14px;
+            text-decoration: none;
+            color: var(--green-pale);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.25s, box-shadow 0.25s;
+        }
+
+        .contact-email:hover {
+            background: rgba(74, 140, 92, 0.2);
+            box-shadow: 0 0 20px rgba(74, 140, 92, 0.2);
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid var(--border);
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: gap;
+        }
+
+        .footer-left {
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 0.06em;
+        }
+
+        .footer-right {
+            font-size: 12px;
+            color: rgba(74, 140, 92, 0.45);
+            letter-spacing: 0.04em;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 0 20px;
             }
 
-            h1 {
-                font-size: 2rem;
+            main {
+                padding: 40px 16px 80px;
+            }
+
+            .section-body {
+                padding: 18px 20px;
+            }
+
+            .summary-card {
+                padding: 22px 20px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 20px;
             }
         }
     </style>
@@ -497,170 +611,241 @@
 
 <body>
 
-    <!-- Background -->
-    <div class="bg-canvas">
-        <div class="stars"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="light-streak"></div>
-    </div>
+    <!-- Ambient layers -->
+    <div class="ambient"></div>
+    <div class="grid-bg"></div>
+    <div class="noise"></div>
 
-    <!-- Content -->
-    <div class="page-wrapper">
-
-        <!-- Header -->
-        <header class="header">
-            <div class="app-badge">
-                <span class="icon">📖</span>
-                Bible — Chapter By Chapter
+    <!-- Sticky header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">📖</div>
+            <div>
+                <div class="logo-text">Bible · Chapter By Chapter</div>
+                <div class="logo-sub">Privacy Policy</div>
             </div>
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last Updated &nbsp;·&nbsp; February 28, 2026</p>
-        </header>
+        </div>
+        <div class="header-badge">Last Updated: Apr 12, 2026</div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-eyebrow">✝ &nbsp;Your Privacy Matters</div>
+            <h1>Privacy <em>Policy</em></h1>
+            <div class="divider">
+                <div class="line"></div>
+                <div class="sym">✦</div>
+                <div class="line r"></div>
+            </div>
+            <div class="hero-date">Last Updated: April 12, 2026</div>
+        </div>
 
         <!-- Summary -->
-        <div class="summary-card">
-            <div class="summary-label">✦ &nbsp;At a Glance</div>
-            <p>We respect your privacy. Your reading progress is stored only on your device and never transmitted to us.
-                We use Google AdMob to display <strong>non-personalized ads</strong>, which do not track your behavior
-                for targeted advertising.</p>
-        </div>
-
-        <div class="divider">
-            <div class="divider-line"></div>
-            <div class="divider-gem"></div>
-            <div class="divider-line"></div>
-        </div>
-
-        <!-- 1. Introduction -->
-        <div class="glass-panel">
-            <div class="section-num">1</div>
-            <h2>Introduction</h2>
-            <p>Welcome to Bible - Chapter By Chapter ("we," "our," or "us"). This Privacy Policy explains how we
-                collect, use, and protect your information when you use our mobile application.</p>
-        </div>
-
-        <!-- 2. Information We Collect -->
-        <div class="glass-panel">
-            <div class="section-num">2</div>
-            <h2>Information We Collect</h2>
-
-            <h3>2.1 &nbsp;Information Stored Locally</h3>
-            <p>The following data is stored <strong style="color:rgba(255,255,255,0.85)">only on your device</strong>
-                and is never transmitted to us:</p>
-            <ul>
-                <li>Reading progress (chapters completed)</li>
-                <li>Quiz scores and history</li>
-                <li>Notification preferences and reminder settings</li>
-                <li>Reading streaks</li>
-            </ul>
-
-            <h3>2.2 &nbsp;Information Collected by Third Parties</h3>
-            <p>We use <strong style="color:rgba(255,255,255,0.85)">Google AdMob</strong> to display advertisements.
-                Because our app contains religious content, we <strong>strictly use Non-Personalized Ads (NPA)</strong>
-                in compliance with Google Platform Policies. These ads do not track your behavior to serve custom ads.
-                Google may still collect limited technical information, such as:</p>
-            <ul>
-                <li>Device advertising identifiers (for frequency capping, aggregated reporting, and fraud/invalid click
-                    prevention)</li>
-                <li>IP address (anonymized)</li>
-                <li>App usage statistics</li>
-                <li>Device information (model, OS version)</li>
-            </ul>
-
-            <div class="sub-panel">
-                <p
-                    style="margin-bottom:10px; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-ice);">
-                    Google Data References</p>
-                <ul>
-                    <li><a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a></li>
-                    <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank">How Google uses
-                            information from sites or apps that use our services</a></li>
-                </ul>
+        <div class="summary-card reveal">
+            <div class="s-label">📋 &nbsp;Quick Summary</div>
+            <p>We respect your privacy completely. Your <strong>reading progress is stored only on your device</strong>
+                and never transmitted to us. We use <strong>Appodeal</strong>, an ad mediation platform, to display
+                ads. In the EU, a consent dialog is shown before any personalized data is collected. Outside
+                the EU, ads are contextual and do not track your behavior for targeted advertising.</p>
+            <div class="guarantee-row">
+                <div class="guarantee"><span class="g-icon">🔒</span> Data stays on your device</div>
+                <div class="guarantee"><span class="g-icon">🚫</span> No behavioral tracking</div>
+                <div class="guarantee"><span class="g-icon">✝</span> Built with integrity</div>
             </div>
         </div>
 
-        <!-- 3. How We Use Information -->
-        <div class="glass-panel">
-            <div class="section-num">3</div>
-            <h2>How We Use Information</h2>
-            <ul>
-                <li><strong>Local Data:</strong> To save your progress and provide a personalized reading experience
-                </li>
-                <li><strong>Advertising Data:</strong> To display contextual, non-personalized advertisements to support
-                    the free app</li>
-            </ul>
+        <!-- Section 1 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">1</div>
+                <h2>Introduction</h2>
+            </div>
+            <div class="section-body">
+                <p>Welcome to <strong>Bible - Chapter By Chapter</strong> ("we," "our," or "us"). This Privacy Policy
+                    explains how we collect, use, and protect your information when you use our mobile application.</p>
+            </div>
         </div>
 
-        <!-- 4. Data Sharing -->
-        <div class="glass-panel">
-            <div class="section-num">4</div>
-            <h2>Data Sharing</h2>
-            <p>We do <strong style="color:rgba(255,255,255,0.85)">not</strong> sell, trade, or share your personal
-                information with third parties, except:</p>
-            <ul>
-                <li>Google AdMob (for advertising purposes, as described above)</li>
-                <li>When required by law or legal process</li>
-            </ul>
+        <!-- Section 2 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">2</div>
+                <h2>Information We Collect</h2>
+            </div>
+            <div class="section-body">
+                <div class="sub-heading">2.1 — Information Stored Locally</div>
+                <p>The following data is stored <strong>only on your device</strong> and is never transmitted to us:</p>
+                <div class="item-list">
+                    <div class="list-item">Reading progress (chapters completed)</div>
+                    <div class="list-item">Quiz scores and history</div>
+                    <div class="list-item">Notification preferences and reminder settings</div>
+                    <div class="list-item">Reading streaks</div>
+                </div>
+
+                <div class="sub-heading">2.2 — Information Collected by Third Parties</div>
+                <p>We use <strong>Appodeal</strong>, an ad mediation platform, to display advertisements.
+                    Appodeal mediates across multiple ad networks (such as Meta, AppLovin, Unity Ads, Mintegral,
+                    and others) to serve ads in our app. In regions covered by GDPR (EU/EEA), a consent dialog
+                    is presented before any personal data is collected. These third-party ad services may collect
+                    limited technical information, such as:</p>
+                <div class="item-list">
+                    <div class="list-item">Device advertising identifiers (for frequency capping, aggregated reporting,
+                        and fraud/invalid click prevention)</div>
+                    <div class="list-item">IP address (anonymized/truncated)</div>
+                    <div class="list-item">App usage statistics and interactions with the ad</div>
+                    <div class="list-item">Crash logs & diagnostics</div>
+                    <div class="list-item">Device information (model, OS version)</div>
+                </div>
+                <p>For more information on how our ad partners use your data, please review:</p>
+                <div class="item-list">
+                    <div class="list-item"><a href="https://www.appodeal.com/privacy-policy" target="_blank">Appodeal's
+                            Privacy Policy</a></div>
+                    <div class="list-item"><a href="https://www.facebook.com/privacy/policy/" target="_blank">Meta's
+                            Privacy Policy</a></div>
+                    <div class="list-item"><a href="https://www.applovin.com/privacy/" target="_blank">AppLovin's
+                            Privacy Policy</a></div>
+                    <div class="list-item"><a href="https://unity.com/legal/privacy-policy" target="_blank">Unity's
+                            Privacy Policy</a></div>
+                </div>
+            </div>
         </div>
 
-        <!-- 5. Data Security -->
-        <div class="glass-panel">
-            <div class="section-num">5</div>
-            <h2>Data Security</h2>
-            <p>Your reading progress and preferences are stored securely on your device using Android's DataStore. We do
-                not have access to this data.</p>
+        <!-- Section 3 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <h2>How We Use Information</h2>
+            </div>
+            <div class="section-body">
+                <div class="item-list">
+                    <div class="list-item"><strong>Local Data:</strong> To save your progress and provide a personalized
+                        reading experience</div>
+                    <div class="list-item"><strong>Advertising Data:</strong> To display contextual, non-personalized
+                        advertisements to support the free app</div>
+                </div>
+            </div>
         </div>
 
-        <!-- 6. Children's Privacy -->
-        <div class="glass-panel">
-            <div class="section-num">6</div>
-            <h2>Children's Privacy</h2>
-            <p>Our app is suitable for all ages. We do not knowingly collect personal information from children under
-                13. The app displays <strong>strictly non-personalized ads</strong> for all users, completely avoiding
-                any behavioral tracking.</p>
+        <!-- Section 4 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">4</div>
+                <h2>Data Sharing</h2>
+            </div>
+            <div class="section-body">
+                <p>We do <strong>not</strong> sell, trade, or share your personal information with third parties,
+                    except:</p>
+                <div class="item-list">
+                    <div class="list-item">Appodeal and its mediated ad networks (for advertising purposes, as
+                        described above)</div>
+                    <div class="list-item">When required by law or legal process</div>
+                </div>
+            </div>
         </div>
 
-        <!-- 7. Your Rights -->
-        <div class="glass-panel">
-            <div class="section-num">7</div>
-            <h2>Your Rights</h2>
-            <p>You have the right to:</p>
-            <ul>
-                <li><strong>Delete your data:</strong> Clear app data from your device settings or uninstall the app
-                </li>
-                <li><strong>Disable notifications:</strong> Turn off reminders in the app's Settings screen</li>
-            </ul>
+        <!-- Section 5 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">5</div>
+                <h2>Data Security</h2>
+            </div>
+            <div class="section-body">
+                <p>Your reading progress and preferences are stored securely on your device using <strong>Android's
+                        DataStore</strong>. We do not have access to this data.</p>
+            </div>
         </div>
 
-        <!-- 8. Changes -->
-        <div class="glass-panel">
-            <div class="section-num">8</div>
-            <h2>Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by
-                updating the "Last Updated" date at the top of this page.</p>
+        <!-- Section 6 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">6</div>
+                <h2>Children's Privacy</h2>
+            </div>
+            <div class="section-body">
+                <p>Our app is suitable for all ages. We do not knowingly collect personal information from children
+                    under 13. The app displays strictly <strong>non-personalized ads</strong> for all users, completely
+                    avoiding any behavioral tracking.</p>
+            </div>
         </div>
 
-        <!-- 9. Contact -->
-        <div class="contact-panel">
-            <div class="section-num"
-                style="border-color:rgba(168,216,240,0.3); color:var(--accent-ice); background:rgba(168,216,240,0.06);">
-                9</div>
-            <h2>Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy or our practices, please reach out:</p>
-            <a href="mailto:obfuscatexapps@gmail.com" class="email-display"
-                style="text-decoration:none; cursor:pointer;">
-                <span class="email-icon">✉</span>
-                obfuscatexapps@gmail.com
-            </a>
+        <!-- Section 7 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">7</div>
+                <h2>Your Rights</h2>
+            </div>
+            <div class="section-body">
+                <p>You have the right to:</p>
+                <div class="item-list">
+                    <div class="list-item"><strong>Delete your data:</strong> Clear app data from your device settings
+                        or uninstall the app</div>
+                    <div class="list-item"><strong>Disable notifications:</strong> Turn off reminders in the app's
+                        Settings screen</div>
+                </div>
+            </div>
         </div>
 
-        <div class="footer-note">
-            ✦ &nbsp; Bible — Chapter By Chapter &nbsp;·&nbsp; All Rights Reserved
+        <!-- Section 8 -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">8</div>
+                <h2>Changes to This Policy</h2>
+            </div>
+            <div class="section-body">
+                <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by
+                    updating the "Last Updated" date at the top of this page.</p>
+            </div>
         </div>
 
-    </div>
+        <!-- Section 9 — Contact -->
+        <div class="section reveal">
+            <div class="section-header">
+                <div class="section-num">9</div>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-card">
+                <p style="font-size:15px;color:rgba(255,255,255,0.62);line-height:1.7;font-weight:300;">If you have any
+                    questions about this Privacy Policy or our practices, please reach out — we'd love to hear from you.
+                </p>
+                <a class="contact-email" href="mailto:obfuscatexapps@gmail.com">
+                    <span>✉</span>
+                    obfuscatexapps@gmail.com
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">Bible · Chapter By Chapter &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; v1.6.4</div>
+        <div class="footer-right">© 2026 Bible – Chapter By Chapter</div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Parallax ambient on mouse
+        const ambient = document.querySelector('.ambient');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            if (ambient) ambient.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
 </body>
 
 </html>
