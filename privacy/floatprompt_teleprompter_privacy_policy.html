@@ -21,7 +21,6 @@
       min-height: 100vh;
     }
 
-    /* Animated background elements */
     body::before {
       content: '';
       position: fixed;
@@ -144,7 +143,7 @@
     }
 
     ul li::before {
-      content: '▸';
+      content: '\25B8';
       position: absolute;
       left: 0;
       color: #ff00ff;
@@ -172,7 +171,6 @@
       border-bottom-color: #ff00ff;
     }
 
-    /* Scanlines effect */
     body::after {
       content: '';
       position: fixed;
@@ -200,7 +198,6 @@
       font-size: 0.9em;
     }
 
-    /* Responsive design */
     @media (max-width: 768px) {
       h1 {
         font-size: 2.5em;
@@ -225,7 +222,7 @@
     <header>
       <h1>FloatPrompt</h1>
       <div class="divider"></div>
-      <p class="last-modified">Privacy Policy | Last Modified: February 24, 2026</p>
+      <p class="last-modified">Privacy Policy | Last Modified: August 29, 2026</p>
     </header>
 
     <section>
@@ -235,88 +232,89 @@
 
     <section>
       <h2>2. Data Collection</h2>
+      <p><strong>Local Storage (all users):</strong></p>
       <ul>
-        <li>We do not collect personal data on our servers.</li>
-        <li>Scripts you create are stored locally on your device only.</li>
+        <li>Scripts you create are stored locally on your device in an encrypted local database.</li>
         <li>Video recordings are saved locally to your device's Gallery.</li>
-        <li>We do not transmit any of your scripts, recordings, or personal files to external servers.</li>
+        <li>We do not transmit any of your scripts, recordings, or personal files to external servers unless you explicitly enable Cloud Sync.</li>
+      </ul>
+
+      <p><strong>Cloud Sync (optional, Pro feature):</strong></p>
+      <ul>
+        <li>If you sign in with Google and enable Cloud Sync, your scripts are stored in Firebase Firestore under your Google account UID.</li>
+        <li>Cloud Sync is disabled by default and requires an active Pro subscription.</li>
+        <li>Synced data includes: script title, content, folder name, scroll speed, font size, mirror setting, and last modified timestamp.</li>
+        <li>Disabling Cloud Sync does not delete your cloud data. Use "Delete Account" in Settings to permanently remove all cloud-stored scripts.</li>
+      </ul>
+
+      <p><strong>Authentication:</strong></p>
+      <ul>
+        <li>If you choose to sign in, we use Google Sign-In via Firebase Authentication. Google collects your name, email address, and profile photo according to <a href="https://policies.google.com/privacy" class="contact-link" target="_blank">Google's Privacy Policy</a>.</li>
+        <li>We store only your Firebase UID internally. We do not store your Google email or profile photo on our servers.</li>
       </ul>
     </section>
 
     <section>
       <h2>3. Permissions</h2>
       <ul>
-        <li><strong>Display Over Other Apps (Overlay):</strong> Used to display the teleprompter script over other applications.</li>
-        <li><strong>Camera/Microphone:</strong> Used only when you actively choose to record a video within the App.</li>
+        <li><strong>Display Over Other Apps (Overlay):</strong> Used to display the teleprompter script over other applications when you activate the floating overlay.</li>
+        <li><strong>Camera/Microphone:</strong> Used only when you actively choose to record a video within the App. Camera recording is a Pro feature.</li>
         <li>These permissions are only activated with your explicit action and are not used in the background.</li>
       </ul>
     </section>
 
     <section>
-      <h2>4. Advertising &amp; Third-Party Services</h2>
-      <p>We use the following third-party services that may collect data:</p>
+      <h2>4. Third-Party Services</h2>
+      <p>We use the following third-party services:</p>
 
-      <h3>a) Google AdMob (Advertising)</h3>
+      <h3>a) Google Firebase</h3>
       <ul>
-        <li>AdMob displays ads in this App and may use technologies such as cookies, device identifiers (including Advertising ID), IP addresses, and other identifiers to serve ads and measure their performance.</li>
-        <li>Data that may be collected includes: Advertising ID, device information (model, OS version, screen size), IP address, approximate location (IP-based), app usage data, and interaction with ads.</li>
-        <li>AdMob's data practices are governed by Google's Privacy Policy: <a href="https://policies.google.com/privacy" class="contact-link" target="_blank">https://policies.google.com/privacy</a></li>
+        <li><strong>Firebase Authentication:</strong> Handles Google Sign-In. Collects your Google account identifier (UID), display name, and profile photo.</li>
+        <li><strong>Cloud Firestore:</strong> Stores your scripts when Cloud Sync is enabled. Data is stored under your Firebase UID.</li>
+        <li>Firebase's privacy practices: <a href="https://firebase.google.com/support/privacy" class="contact-link" target="_blank">https://firebase.google.com/support/privacy</a></li>
       </ul>
 
-      <h3>b) Google Firebase Analytics</h3>
+      <h3>b) Google Play Billing</h3>
       <ul>
-        <li>Firebase Analytics collects app usage data including device identifiers, session data, and in-app events to help us understand usage patterns.</li>
-        <li>Firebase's privacy practices: <a href="https://firebase.google.com/support/privacy" class="contact-link" target="_blank">https://firebase.google.com/support/privacy</a></li>
+        <li>We use Google Play Billing Library to manage Pro subscription purchases. Google handles payment processing and does not share your payment details with us.</li>
+        <li>We receive only your subscription status (active/inactive) from Google Play. We do not receive your name, email, or payment information.</li>
       </ul>
 
       <p>For more information about how Google uses data from apps that use their services, please visit: <a href="https://policies.google.com/technologies/partner-sites" class="contact-link" target="_blank">https://policies.google.com/technologies/partner-sites</a></p>
     </section>
 
     <section>
-      <h2>5. User Consent &amp; Ad Personalization</h2>
-      <ul>
-        <li>Before serving personalized ads, we request your consent using Google's User Messaging Platform (UMP), in compliance with GDPR and other applicable regulations.</li>
-        <li>You may change your ad personalization preferences at any time through the App's Settings screen under "Manage Ad Preferences."</li>
-        <li>If you do not consent to personalized ads, you may still see non-personalized (contextual) ads.</li>
-        <li>Google will not personalize ads if a user's Google Account ad personalization setting is turned off, regardless of any choice made in this App.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>6. Data Sharing</h2>
+      <h2>5. Data Sharing</h2>
       <ul>
         <li>We do not sell, trade, or rent your personal information.</li>
-        <li>We do not pass any personally identifiable information (PII) to Google or any third party through our ad integrations.</li>
-        <li>Data collected by third-party ad and analytics services (AdMob, Firebase) is processed by those services according to their own privacy policies linked above.</li>
+        <li>We do not share your scripts, recordings, or personal data with any third party.</li>
+        <li>Data processed by Firebase (authentication and Firestore) is handled according to Google's privacy policies linked above.</li>
       </ul>
     </section>
 
     <section>
-      <h2>7. Children's Privacy</h2>
+      <h2>6. Children's Privacy</h2>
       <ul>
         <li>This App is not directed at children under the age of 13.</li>
         <li>We do not knowingly collect personal information from children under 13.</li>
-        <li>We have tagged our ad requests to indicate this App is NOT directed at children (setTagForUnderAgeOfConsent = false).</li>
         <li>If we become aware that a child under 13 has provided personal information, we will take steps to remove it.</li>
       </ul>
     </section>
 
     <section>
-      <h2>8. Data Retention</h2>
+      <h2>7. Data Retention</h2>
       <ul>
-        <li>All user-generated content (scripts, recordings) is stored locally on your device.</li>
-        <li>We do not retain any user data on our servers.</li>
-        <li>Uninstalling the App will remove all locally stored data.</li>
-        <li>Third-party services (AdMob, Firebase) may retain data according to their own policies.</li>
+        <li><strong>Local data:</strong> All user-generated content (scripts, recordings) is stored locally on your device. Uninstalling the App will remove all locally stored data.</li>
+        <li><strong>Cloud data:</strong> If Cloud Sync is enabled, your scripts are retained in Firebase Firestore until you delete them or delete your account.</li>
+        <li><strong>Account deletion:</strong> You can permanently delete your account and all associated cloud data at any time via Settings > Cloud > Delete Account. This will remove your Firebase authentication, all scripts stored in Firestore, and disable Cloud Sync. This action cannot be undone.</li>
       </ul>
     </section>
 
     <section>
-      <h2>9. Your Rights (GDPR / CCPA)</h2>
+      <h2>8. Your Rights (GDPR / CCPA)</h2>
       <p>If you are in the European Economic Area (EEA), you have the right to:</p>
       <ul>
         <li>Access, correct, or delete your data</li>
-        <li>Withdraw consent for personalized advertising at any time via Settings &gt; Manage Ad Preferences</li>
         <li>Object to data processing</li>
         <li>Lodge a complaint with a data protection authority</li>
       </ul>
@@ -326,16 +324,20 @@
         <li>Request deletion of your data</li>
         <li>Opt out of the sale of personal data (we do not sell personal data)</li>
       </ul>
-      <p>To exercise any of these rights, contact us at <a href="mailto:floatprompt@gmail.com" class="contact-link">floatprompt@gmail.com</a>.</p>
+      <p>To exercise any of these rights, you may delete your account directly in the App via Settings > Cloud > Delete Account, or contact us at <a href="mailto:floatprompt@gmail.com" class="contact-link">floatprompt@gmail.com</a>.</p>
     </section>
 
     <section>
-      <h2>10. Security</h2>
-      <p>We take reasonable measures to protect your data. All user content remains on your device and is not transmitted to external servers.</p>
+      <h2>9. Security</h2>
+      <ul>
+        <li>Local data is stored in an encrypted database on your device.</li>
+        <li>Cloud data in Firestore is protected by Firebase Security Rules that ensure only you can access your own scripts.</li>
+        <li>All communication with Firebase services uses encrypted connections (HTTPS/TLS).</li>
+      </ul>
     </section>
 
     <section>
-      <h2>11. Changes to This Policy</h2>
+      <h2>10. Changes to This Policy</h2>
       <ul>
         <li>We may update this Privacy Policy from time to time. Any changes will be reflected by the "Last modified" date at the top of this policy.</li>
         <li>We will notify users of material changes through an in-app notice.</li>
@@ -344,13 +346,13 @@
     </section>
 
     <section class="contact-section">
-      <h2>12. Contact Us</h2>
+      <h2>11. Contact Us</h2>
       <p>If you have any questions about this Privacy Policy, please contact us:</p>
       <p style="margin-top: 20px; font-size: 1.1em;"><a href="mailto:floatprompt@gmail.com" class="contact-link">floatprompt@gmail.com</a></p>
     </section>
 
     <footer>
-      <p>© 2026 FloatPrompt. All rights reserved.</p>
+      <p>&copy; 2026 FloatPrompt. All rights reserved.</p>
     </footer>
   </div>
 </body>
